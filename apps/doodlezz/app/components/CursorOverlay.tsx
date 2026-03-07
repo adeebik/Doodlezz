@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Game } from "../draw/Game";
 import { CursorData } from "../../types/types";
 
-// SVG Cursor Icon matching the general design
+// SVG Cursor Icon matching the user-provided design (standard arrow, anchored at 0,0)
 const CursorIcon = ({ color }: { color: string }) => (
   <svg
-    width="24"
-    height="36"
-    viewBox="0 0 24 36"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
     fill="none"
-    stroke="white"
-    strokeWidth="2"
-    strokeLinejoin="round"
     xmlns="http://www.w3.org/2000/svg"
-    className="drop-shadow-md"
-    style={{ transform: "translate(-2px, -2px)" }}
+    className="drop-shadow-sm"
   >
     <path
-      d="M5.65376 33.1598L2.39499 3.01211C2.16428 0.878931 4.54922 -0.669818 6.43899 0.443048L32.2536 15.632C34.2016 16.7788 34.0264 19.6644 31.9168 20.5367L22.9902 24.2274C22.4277 24.4599 21.9806 24.897 21.7374 25.4534L17.7556 34.562C16.8291 36.6811 13.881 36.756 12.8428 34.6932L9.58402 28.2255C9.3644 27.7895 8.93206 27.4851 8.44111 27.4208L5.65376 33.1598Z"
+      d="M3 3L10 19L13 13L19 10L3 3Z"
       fill={color}
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -86,14 +86,14 @@ export default function CursorOverlay({ game }: CursorOverlayProps) {
         return (
           <div
             key={cursor.userId}
-            className="absolute top-0 left-0 transition-all duration-75 ease-linear flex flex-col items-start select-none"
+            className="absolute top-0 left-0 transition-transform duration-100 ease-out flex flex-col items-start select-none"
             style={{
               transform: `translate(${screenCoords.x}px, ${screenCoords.y}px)`,
             }}
           >
             <CursorIcon color={color} />
             <div
-              className="mt-1 ml-4 px-2 py-0.5 rounded-md text-xs text-white font-medium whitespace-nowrap shadow-sm"
+              className="mt-0 ml-3 px-3 py-0.5 rounded-full text-[11px] text-black font-bold whitespace-nowrap shadow-md border border-white/40"
               style={{ backgroundColor: color }}
             >
               {cursor.name}
