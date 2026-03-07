@@ -6,7 +6,6 @@ export const getChats = async (req: Request, res: Response) => {
   const userId = req.userId;
 
   try {
-    // Verify user has access to this room
     const room = await prisma.room.findFirst({
       where: {
         id: roomId?.toString(),
@@ -24,25 +23,22 @@ export const getChats = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: "Room not found" });
     }
 
-    // Check if user is admin OR member
     const isMember = room.adminId === userId || room.members.length > 0;
 
     if (!isMember) {
       return res.status(403).json({ msg: "Access denied" });
     }
 
-    // Get messages with full shape data from the JSON string
     const chats = await prisma.chat.findMany({
       where: {
         roomId: roomId?.toString(),
       },
       orderBy: {
-        id: "asc", // CRITICAL: Oldest first for proper canvas reconstruction
+        id: "asc",
       },
-      take: 1000, // Get last 1000 shapes
+      take: 1000,
     });
 
-    // Transform the data to match frontend format
     const response = chats.map((chat) => {
       return {
         id: chat.id,
