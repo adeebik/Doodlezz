@@ -61,14 +61,3 @@ services:
           type: web
           name: eraser-ws
           property: host
-    buildArgs:
-      - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: eraser-backend
-          property: host
-      - key: NEXT_PUBLIC_WS_URL
-        fromService:
-          type: web
-          name: eraser-ws
-          property: host
