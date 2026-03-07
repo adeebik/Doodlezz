@@ -14,7 +14,7 @@ RUN pnpm turbo run build --filter=backend...
 
 EXPOSE 3002
 
-CMD [ "pnpm", "--filter", "backend", "start" ]
+CMD pnpm --filter @repo/db db:migrate:deploy && pnpm --filter backend start
 
 # ai generated dockerfile which is more optimized. 
 # FROM node:22-alpine AS base

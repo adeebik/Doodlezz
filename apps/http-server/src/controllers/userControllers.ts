@@ -41,9 +41,7 @@ export const signinController = async (req: Request, res: Response) => {
     console.log("secert", JWT_SECRET);
 
     const token = jwt.sign(
-      {
-        id: user.id,
-      },
+      { id : user.id },
       JWT_SECRET as string,
     );
 
