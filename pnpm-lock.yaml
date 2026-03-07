@@ -88,6 +88,9 @@ importers:
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
+      axios:
+        specifier: ^1.13.4
+        version: 1.13.4
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0

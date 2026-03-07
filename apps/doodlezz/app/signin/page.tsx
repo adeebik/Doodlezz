@@ -3,7 +3,7 @@
 import { Button } from "@repo/ui/button";
 import { Input } from "@repo/ui/input";
 import Link from "next/link";
-import { PencilLine } from "lucide-react";
+import { PencilLine, Github } from "lucide-react";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Alert } from "@repo/ui/alert";
@@ -122,6 +122,24 @@ export default function Signin() {
               type="submit"
             >
               Log In
+            </Button>
+
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t-2 border-black/10"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500 font-bold">Or continue with</span>
+              </div>
+            </div>
+
+            <Button
+              onClick={() => window.location.href = `${BE_URL}/user/github`}
+              variant="secondary"
+              className="w-full py-4 text-lg"
+            >
+              <Github className="w-5 h-5" />
+              GitHub
             </Button>
           </div>
         </div>

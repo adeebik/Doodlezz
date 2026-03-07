@@ -3,6 +3,10 @@ envVarGroups:
     envVars:
       - key: JWT_SECRET
         generateValue: true
+      - key: GITHUB_CLIENT_ID
+        sync: false # User must provide this in Render dashboard
+      - key: GITHUB_CLIENT_SECRET
+        sync: false # User must provide this in Render dashboard
 
 databases:
   - name: eraser-db
