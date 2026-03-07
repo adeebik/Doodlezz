@@ -1,11 +1,10 @@
-services:
-  # Database
-  - type: database
-    name: eraser-db
+databases:
+  - name: eraser-db
     databaseName: eraser
     user: postgres
     plan: free
 
+services:
   # Backend (HTTP Server)
   - type: web
     name: eraser-backend
