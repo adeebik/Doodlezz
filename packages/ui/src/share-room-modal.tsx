@@ -40,9 +40,9 @@ export function ShareRoomModal({
 
 
   const shareLink = generatedLink 
-    ? `${window.location.origin}/join/${generatedLink}`
+    ? `${generatedLink}`
     : initialLink 
-      ? `${window.location.origin}/join/${initialLink}`
+      ? `${initialLink}`
       : "";
 
   const handleGenerate = async () => {

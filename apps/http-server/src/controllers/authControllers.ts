@@ -87,7 +87,12 @@ export const githubCallback = async (req: Request, res: Response) => {
     const token = jwt.sign({ id: user.id }, JWT_SECRET as string);
 
     // Redirect to frontend with token
-    res.redirect(`${FE_URL}/auth-callback?token=${token}&name=${user.name}`);
+    let targetUrl = FE_URL || "http://localhost:3000";
+    if (!targetUrl.startsWith("http")) {
+      targetUrl = `https://${targetUrl}`;
+    }
+    
+    res.redirect(`${targetUrl}/auth-callback?token=${token}&name=${user.name}`);
   } catch (error) {
     console.error("GitHub OAuth Error:", error);
     res.status(500).json({ msg: "Authentication failed" });
