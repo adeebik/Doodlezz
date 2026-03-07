@@ -1,7 +1,12 @@
+envVarGroups:
+  - name: eraser-shared
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+
 databases:
   - name: eraser-db
     databaseName: eraser
-    user: postgres
     plan: free
 
 services:
@@ -13,12 +18,11 @@ services:
     dockerfilePath: docker/Dockerfile.be
     plan: free
     envVars:
+      - fromGroup: eraser-shared
       - key: DATABASE_URL
         fromDatabase:
           name: eraser-db
           property: connectionString
-      - key: JWT_SECRET
-        generateValue: true
       - key: PORT
         value: 3002
 
@@ -30,16 +34,11 @@ services:
     dockerfilePath: docker/Dockerfile.ws
     plan: free
     envVars:
+      - fromGroup: eraser-shared
       - key: DATABASE_URL
         fromDatabase:
           name: eraser-db
           property: connectionString
-      - key: JWT_SECRET
-        fromService:
-          type: web
-          name: eraser-backend
-          property: envVar
-          envVar: JWT_SECRET
       - key: PORT
         value: 8080
 
