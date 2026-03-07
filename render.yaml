@@ -4,9 +4,11 @@ envVarGroups:
       - key: JWT_SECRET
         generateValue: true
       - key: GITHUB_CLIENT_ID
-        sync: false # User must provide this in Render dashboard
+        sync: false
       - key: GITHUB_CLIENT_SECRET
-        sync: false # User must provide this in Render dashboard
+        sync: false
+      - key: FE_URL
+        sync: false # User provides https://eraser-frontend.onrender.com here
 
 databases:
   - name: eraser-db
@@ -29,11 +31,6 @@ services:
           property: connectionString
       - key: PORT
         value: 3002
-      - key: FE_URL
-        fromService:
-          type: web
-          name: eraser-frontend
-          property: host
       - key: BE_URL
         fromService:
           type: web
@@ -60,11 +57,6 @@ services:
           property: connectionString
       - key: PORT
         value: 8080
-      - key: FE_URL
-        fromService:
-          type: web
-          name: eraser-frontend
-          property: host
       - key: BE_URL
         fromService:
           type: web
@@ -84,6 +76,7 @@ services:
     dockerfilePath: docker/Dockerfile.fe
     plan: free
     envVars:
+      - fromGroup: eraser-shared
       - key: BE_URL
         fromService:
           type: web
@@ -94,7 +87,6 @@ services:
           type: web
           name: eraser-ws
           property: host
-      # Also provide NEXT_PUBLIC versions for standard Next.js behavior
       - key: NEXT_PUBLIC_API_URL
         fromService:
           type: web
