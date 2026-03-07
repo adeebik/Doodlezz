@@ -1,5 +1,2 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-export const BE_URL = process.env.BE_URL || "https://eraser-backend.onrender.com"
-export const WS_URL = process.env.WS_URL || "https://eraser-ws.onrender.com"
+export const BE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.BE_URL || "https://eraser-backend.onrender.com"
+export const WS_URL = process.env.NEXT_PUBLIC_WS_URL || process.env.WS_URL || "wss://eraser-ws.onrender.com"
