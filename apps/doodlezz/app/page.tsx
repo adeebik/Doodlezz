@@ -1,6 +1,6 @@
 import { Button } from "@repo/ui/button";
 import Link from "next/link";
-import { Paintbrush, Users, Zap, PencilLine } from "lucide-react";
+import { Paintbrush, Users, Zap, PencilLine, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -97,8 +97,8 @@ export default function Home() {
 
       {/* Feature Section Preview */}
       <section className="bg-white border-y-4 border-black py-12 overflow-hidden whitespace-nowrap relative z-10">
-        <div className="flex gap-20 animate-marquee">
-          {[1, 2, 3, 4].map((i) => (
+        <div className="flex gap-20 animate-marquee hover:[animation-play-state:paused] w-max">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
             <div key={i} className="flex items-center gap-4">
               <span className="text-3xl font-black italic">COLLABORATE</span>
               <div className="w-3 h-3 bg-[#FF8A8A] rounded-full" />
@@ -108,6 +108,72 @@ export default function Home() {
               <div className="w-3 h-3 bg-[#B7E4B7] rounded-full" />
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Why Doodlezz? */}
+      <section className="py-24 px-8 max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-5xl font-black tracking-tight">Built for speed, <br/><span className="text-gray-400">designed for fun.</span></h2>
+          <p className="text-xl font-medium text-gray-600 max-w-2xl mx-auto">Skip the complicated tools. Start drawing in seconds with our lightning-fast, collaborative engine.</p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { title: "Real-time Sync", desc: "Every stroke is synchronized instantly across all devices. No lag, just magic.", icon: Zap, color: "bg-yellow-100" },
+            { title: "Link-based Rooms", desc: "No registration required for guests. Just copy the URL and start drawing together.", icon: Users, color: "bg-blue-100" },
+            { title: "Infinite Canvas", desc: "Never run out of space. Our canvas grows with your imagination and ideas.", icon: Paintbrush, color: "bg-green-100" }
+          ].map((feature, i) => (
+            <div key={i} className="bg-white border-4 border-black p-8 rounded-2xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+              <div className={`${feature.color} w-16 h-16 border-2 border-black rounded-xl flex items-center justify-center mb-6`}>
+                <feature.icon className="w-8 h-8 text-black" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">{feature.title}</h3>
+              <p className="font-medium text-gray-600 leading-relaxed">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="bg-[#FFD8B1] border-y-4 border-black py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <h2 className="text-5xl font-black leading-tight">Three steps to <br/>creative nirvana.</h2>
+              <div className="space-y-4">
+                {[
+                  { step: "01", text: "Create a room with one click" },
+                  { step: "02", text: "Share the link with your team" },
+                  { step: "03", text: "Draw, sketch, and innovate" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <span className="text-xl font-black bg-black text-white w-10 h-10 rounded-lg flex items-center justify-center">{item.step}</span>
+                    <span className="text-xl font-bold">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 bg-white border-4 border-black p-4 rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
+              <div className="aspect-square bg-beige rounded-lg border-2 border-dashed border-black flex items-center justify-center">
+                 <Sparkles className="w-24 h-24 text-black/10 animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-8 max-w-7xl mx-auto text-center relative z-10">
+        <div className="bg-black text-white p-12 md:p-20 rounded-[3rem] space-y-8 overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
+          <h2 className="text-5xl md:text-7xl font-black tracking-tight relative z-10">Ready to start <br/>your next masterpiece?</h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-10">
+            <Link href="/signup">
+              <Button variant="pastel-orange" className="text-xl px-12 py-6 h-auto">Join Doodlezz for Free</Button>
+            </Link>
+          </div>
+          <p className="text-gray-400 font-bold tracking-widest text-sm relative z-10 uppercase">No credit card required • Instant setup</p>
         </div>
       </section>
 
