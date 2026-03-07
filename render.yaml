@@ -25,6 +25,21 @@ services:
           property: connectionString
       - key: PORT
         value: 3002
+      - key: FE_URL
+        fromService:
+          type: web
+          name: eraser-frontend
+          property: host
+      - key: BE_URL
+        fromService:
+          type: web
+          name: eraser-backend
+          property: host
+      - key: WS_URL
+        fromService:
+          type: web
+          name: eraser-ws
+          property: host
 
   # WebSocket Server
   - type: web
@@ -41,6 +56,21 @@ services:
           property: connectionString
       - key: PORT
         value: 8080
+      - key: FE_URL
+        fromService:
+          type: web
+          name: eraser-frontend
+          property: host
+      - key: BE_URL
+        fromService:
+          type: web
+          name: eraser-backend
+          property: host
+      - key: WS_URL
+        fromService:
+          type: web
+          name: eraser-ws
+          property: host
 
   # Frontend (Doodlezz)
   - type: web
@@ -50,6 +80,17 @@ services:
     dockerfilePath: docker/Dockerfile.fe
     plan: free
     envVars:
+      - key: BE_URL
+        fromService:
+          type: web
+          name: eraser-backend
+          property: host
+      - key: WS_URL
+        fromService:
+          type: web
+          name: eraser-ws
+          property: host
+      # Also provide NEXT_PUBLIC versions for standard Next.js behavior
       - key: NEXT_PUBLIC_API_URL
         fromService:
           type: web
