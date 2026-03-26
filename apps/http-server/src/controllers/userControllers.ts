@@ -32,7 +32,7 @@ export const signinController = async (req: Request, res: Response) => {
 
     if (!user.password) {
       return res.status(401).json({
-        msg: "This account uses GitHub login. Please use the GitHub button to sign in.",
+        msg: "Invalid inputs",
       });
     }
 
